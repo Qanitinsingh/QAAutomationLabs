@@ -1,47 +1,139 @@
 package qa.automation.labs;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import page.objects.LearnOR;
 
 import java.time.Duration;
 
 public class LearnForm {
 
+    public static String uRL = "https://testing.qaautomationlabs.com/";
+    public static int implicitWait = 20;
     public static WebDriver driver;
-    public static void main(String[] args) {
 
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().deleteAllCookies();
+    @BeforeTest
+public static void setupBrowser() {
+    driver = new ChromeDriver();
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+    driver.manage().deleteAllCookies();
+        driver.get(uRL);
+        System.out.println(driver.getTitle());
+        driver.findElement(LearnOR.LEFT_MENU_FORM_OPTION).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+}
+@Test
+    public static void enterValueInFirstName() {
+        try {
 
-driver.get("https://testing.qaautomationlabs.com/");
-System.out.println(driver.getTitle());
+            driver.findElement(LearnOR.FROM_FIRST_NAME).sendKeys("Nitin");
+        } catch (Exception e) {
 
-driver.findElement(By.cssSelector(".mt-2 ul li:nth-of-type(5) a[href='form.php']")).click();
-// implicit wait is the soft wait we use to give after each operation to make sure that selenium is not throwing any exception before the given time
-driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        }
+    }
+    @Test
+    public static void enterValueInMiddleName() {
+        try {
 
-driver.findElement(By.cssSelector("#userForm #firstname")).sendKeys("Nitin");
-        driver.findElement(By.cssSelector("#userForm #middlename")).sendKeys("K");
-        driver.findElement(By.cssSelector("#userForm #lastname")).sendKeys("Singh");
-        driver.findElement(By.cssSelector("#userForm #email")).sendKeys("Nitin@gmail.com");
-        driver.findElement(By.cssSelector("#userForm #password")).sendKeys("Nitin@123");
-        driver.findElement(By.cssSelector("#userForm #address")).sendKeys("Homeland");
-        driver.findElement(By.cssSelector("#userForm #city")).sendKeys("Mohali");
-        driver.findElement(By.cssSelector("#userForm #states")).sendKeys("Punjab");
-        driver.findElement(By.cssSelector("#userForm #pincode")).sendKeys("160061");
-        System.out.println("Form inputs values is eneterd");
-        driver.findElement(By.cssSelector("#userForm .btn-sm")).click();
+            driver.findElement(LearnOR.FROM_MIDDLE_NAME).sendKeys("K");
+        } catch (Exception e) {
 
-        String verifyForm= driver.findElement(By.id("message")).getText();
-        System.out.println(verifyForm);
+        }
+    }
+    @Test
+    public static void enterValueInLastName() {
+        try {
 
-driver.quit();
+            driver.findElement(LearnOR.FROM_LAST_NAME).sendKeys("Singh");
+        } catch (Exception e) {
 
+        }
+    }
+    @Test
+    public static void enterValueInEmail() {
+        try {
 
+            driver.findElement(LearnOR.FROM_EMAIL).sendKeys("Nitin@gmail.com");
+        } catch (Exception e) {
 
+        }
+    }
+    @Test
+    public static void enterValueInPassword() {
+        try {
+
+            driver.findElement(LearnOR.FROM_PASSWORD).sendKeys("Nitin@123");
+        } catch (Exception e) {
+
+        }
+    }
+    @Test
+    public static void enterValueInAddress() {
+        try {
+
+            driver.findElement(LearnOR.FROM_ADDRESS).sendKeys("Phase 9");
+        } catch (Exception e) {
+
+        }
+    }
+    @Test
+    public static void enterValueInCity() {
+        try {
+
+            driver.findElement(LearnOR.FROM_CITY).sendKeys("Mohali");
+        } catch (Exception e) {
+
+        }
 
     }
+    @Test
+    public static void enterValueInStates () {
+        try {
+
+            driver.findElement(LearnOR.FROM_STATE).sendKeys("PB");
+        } catch (Exception e) {
+
+        }
+    }
+    @Test
+    public static void enterValueInPIN_CODE() {
+        try {
+
+            driver.findElement(LearnOR.FROM_PIN_CODE).sendKeys("160061");
+        } catch (Exception e) {
+
+        }
+    }
+    @Test
+    public static void clickSubmit() {
+        try {
+
+            driver.findElement(LearnOR.FROM_SUBMIT_BUTOON).click();
+            String verifyForm = driver.findElement(By.id("message")).getText();
+            System.out.println(verifyForm);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    @AfterTest
+public static void teardownBrowser() {
+driver.quit();
+}
+
+
+
+
+
+
+
+
+
 }
