@@ -1,13 +1,12 @@
-package qa.automation.labs;
+package qa.automation.labs.methods;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import page.objects.LearnOR;
+import qa.automation.labs.page.objects.LearnOR;
 
 import java.time.Duration;
 
@@ -18,17 +17,18 @@ public class LearnForm {
     public static WebDriver driver;
 
     @BeforeTest
-public static void setupBrowser() {
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-    driver.manage().deleteAllCookies();
+    public static void setupBrowser() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+        driver.manage().deleteAllCookies();
         driver.get(uRL);
         System.out.println(driver.getTitle());
         driver.findElement(LearnOR.LEFT_MENU_FORM_OPTION).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-}
-@Test
+    }
+
+    @Test
     public static void enterValueInFirstName() {
         try {
 
@@ -37,6 +37,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInMiddleName() {
         try {
@@ -46,6 +47,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInLastName() {
         try {
@@ -55,6 +57,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInEmail() {
         try {
@@ -64,6 +67,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInPassword() {
         try {
@@ -73,6 +77,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInAddress() {
         try {
@@ -82,6 +87,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInCity() {
         try {
@@ -92,8 +98,9 @@ public static void setupBrowser() {
         }
 
     }
+
     @Test
-    public static void enterValueInStates () {
+    public static void enterValueInStates() {
         try {
 
             driver.findElement(LearnOR.FROM_STATE).sendKeys("PB");
@@ -101,6 +108,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void enterValueInPIN_CODE() {
         try {
@@ -110,6 +118,7 @@ public static void setupBrowser() {
 
         }
     }
+
     @Test
     public static void clickSubmit() {
         try {
@@ -124,16 +133,9 @@ public static void setupBrowser() {
 
 
     @AfterTest
-public static void teardownBrowser() {
-driver.quit();
-}
-
-
-
-
-
-
-
+    public static void teardownBrowser() {
+        driver.quit();
+    }
 
 
 }

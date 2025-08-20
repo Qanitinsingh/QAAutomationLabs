@@ -1,4 +1,4 @@
-package page.objects;
+package qa.automation.labs.page.objects;
 
 import org.openqa.selenium.By;
 
